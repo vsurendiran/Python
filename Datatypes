@@ -1,5 +1,123 @@
 Python has the following data types built-in by default, in these categories:
 
+Object-Oriented Programming (OOP) is a programming paradigm that uses objects and classes to structure software programs. 
+It focuses on organizing code into reusable and interconnected objects. Here are the key concepts of OOP:
+### 1. **Class**
+A class is a blueprint for creating objects. It defines a datatype by bundling data and methods that work on the 
+data into one single unit.
+- **Example**: 
+  ```python
+ 
+class Car:
+      def __init__(self, brand, model):
+          self.brand = brand
+          self.model = model
+
+      def display_info(self):
+          print(f"Car: {self.brand} {self.model}")```
+### 2. **Object**
+An object is an instance of a class. When a class is defined, no memory is allocated until an object of that class is created.
+
+- **Example**:
+  ```python
+  my_car = Car("Toyota", "Corolla")
+  my_car.display_info()  # Output: Car: Toyota Corolla
+  ```
+
+### 3. **Encapsulation**
+Encapsulation is the concept of wrapping data (variables) and code (methods) together as a single unit. 
+It restricts direct access to some of an object's components, which is a means of preventing accidental 
+interference and misuse of the data.
+
+- **Example**:
+  ```python
+  class Person:
+      def __init__(self, name, age):
+          self.__name = name  # private variable
+          self.__age = age    # private variable
+
+      def get_name(self):
+          return self.__name
+
+      def set_age(self, age):
+          self.__age = age
+  ```
+
+### 4. **Inheritance**
+Inheritance is a mechanism where a new class inherits properties and behavior (methods) from an existing class. 
+It allows for hierarchical classification and reuse of code.
+
+- **Example**:
+  ```python
+  class Vehicle:
+      def __init__(self, make, model):
+          self.make = make
+          self.model = model
+
+      def display_info(self):
+          print(f"Vehicle: {self.make} {self.model}")
+
+  class Car(Vehicle):
+      def __init__(self, make, model, num_doors):
+          super().__init__(make, model)
+          self.num_doors = num_doors
+
+      def display_car_info(self):
+          print(f"Car: {self.make} {self.model}, Doors: {self.num_doors}")
+  ```
+
+### 5. **Polymorphism**
+Polymorphism allows methods to do different things based on the object it is acting upon. 
+It provides a way to use a single interface to represent different underlying forms (data types).
+
+- **Example**:
+  ```python
+  class Bird:
+      def speak(self):
+          print("Bird is singing")
+
+  class Dog:
+      def speak(self):
+          print("Dog is barking")
+
+  def animal_sound(animal):
+      animal.speak()
+
+  bird = Bird()
+  dog = Dog()
+
+  animal_sound(bird)  # Output: Bird is singing
+  animal_sound(dog)   # Output: Dog is barking
+  ```
+
+### 6. **Abstraction**
+Abstraction is the concept of hiding the complex implementation details and showing only the necessary features of an object. 
+It helps in reducing programming complexity and effort.
+
+- **Example**:
+  ```python
+  from abc import ABC, abstractmethod
+
+  class Shape(ABC):
+      @abstractmethod
+      def area(self):
+          pass
+
+  class Rectangle(Shape):
+      def __init__(self, width, height):
+          self.width = width
+          self.height = height
+
+      def area(self):
+          return self.width * self.height
+
+  rect = Rectangle(10, 20)
+  print(rect.area())  # Output: 200
+  ```
+
+These concepts form the foundation of object-oriented programming, making it easier to design, understand, and maintain 
+complex software systems.
+
 Text Type      :	str
                   Ex: x = "Hello World"
                   #display x:
