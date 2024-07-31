@@ -1,0 +1,59 @@
+--1. Split user name and domain name
+---------------------------------
+email = input("Enter your name").strip()
+print (email)
+username = email[0:email.index('@')]
+domain = email[email.index('@') + 1:]
+print (username)
+print (domain)
+
+--2. convert number to words
+-----------------------
+def number_to_words(num):
+    if num == 0:
+        return "Zero"
+
+    below_20 = [
+        'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 
+        'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 
+        'Eighteen', 'Nineteen'
+    ]
+    tens = [
+        'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'
+    ]
+    thousands = [
+        '', 'Thousand', 'Million', 'Billion'
+    ]
+
+    def helper(n):
+        if n == 0:
+            return ''
+        elif n < 20:
+            return below_20[n - 1] + ' '
+        elif n < 100:
+            return tens[n // 10 - 2] + ' ' + helper(n % 10)
+        elif n < 1000:
+            return below_20[n // 100 - 1] + ' Hundred ' + helper(n % 100)
+        else:
+            for p, v in enumerate(thousands):
+                if n < 1000 ** (p + 1):
+                    return helper(n // 1000 ** p) + v + ' ' + helper(n % 1000 ** p)
+
+    return helper(num).strip()
+
+# Example usage:
+number = 123456789
+print(number_to_words(number))
+
+Explanation:
+
+for p, v in enumerate(thousands): loops through the thousands list with p as the index and v as the value (e.g., '', 'Thousand', 'Million', 'Billion').
+if n < 1000 ** (p + 1): checks if the number is less than 1000 to the power of (p + 1).
+return helper(n // (1000 ** p)) + v + ' ' + helper(n % (1000 ** p)):
+n // (1000 ** p) gives the part of the number in the current "thousand group".
+v is the thousand group (e.g., 'Thousand', 'Million').
+helper(n % (1000 ** p)) recursively processes the remainder of the number.
+This approach ensures that numbers are broken down and converted correctly based on their magnitude (thousands, millions, billions, etc.).
+
+=========================================================
+--3. 
